@@ -1,0 +1,7 @@
+{
+  "extends": "@yandex-cloud/tsconfig/tsconfig",
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
+}
