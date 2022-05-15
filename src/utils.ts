@@ -47,3 +47,29 @@ export function getGovnoLevel(index: number, isWater = false) {
 export function getPlayerName(player: {name: string; username?: string}) {
     return player.username ? `@${player.username}` : `<b>${player.name}/<b>`;
 }
+
+const intros = [
+    ['Пень', 'Столб', 'Нос'],
+    ['Стиль', 'Шик', 'Сволочь!'],
+    ['День', 'Прошел', 'Кактус'],
+];
+
+export function getPidorIntro() {
+    return getRandomElement(intros) as string[];
+}
+
+export function sleep(ms = 3000) {
+    return new Promise<void>((res) => {
+        setTimeout(() => {
+            res();
+        }, ms);
+    });
+}
+
+type ForEachCb<T> = (item: T, index: number, items: T[]) => Promise<any>;
+
+export async function asyncForEach<T>(array: T[], callback: ForEachCb<T>) {
+    for (let index = 0; index < array.length; index++) {
+        await callback(array[index], index, array);
+    }
+}

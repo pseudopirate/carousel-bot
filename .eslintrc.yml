@@ -12,6 +12,7 @@ plugins:
 rules: {
   indent: ['error', 4],
   import/extensions: 'off'
+  no-plusplus: 'off'
 }
 settings:
   import/resolver:
