@@ -48,7 +48,7 @@ FROM govnars g
 JOIN players p ON g.player_id = p.id
 WHERE p.chat_id = ?
 GROUP BY p.id
-HAVING COUNT(p.id) > 1
+HAVING COUNT(p.id) > 0
 ORDER BY count DESC
 LIMIT 10;`;
 
