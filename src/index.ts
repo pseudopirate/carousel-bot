@@ -7,9 +7,17 @@ import { Telegraf } from 'telegraf';
 import {
     getGovnoStats,
     getPidorStats,
-    insertChat, insertGovnar, insertPidor, insertPlayer, listPlayers, listTodaysGovnars, listTodaysPidors,
+    insertChat,
+    insertGovnar,
+    insertPidor,
+    insertPlayer,
+    listPlayers,
+    listTodaysGovnars,
+    listTodaysPidors,
 } from './db';
-import { asyncForEach, getGovnoLevel, getPidorIntro, getPlayerName, getRandomElement, sleep } from './utils';
+import {
+    asyncForEach, getGovnoLevel, getPidorIntro, getPlayerName, getRandomElement, sleep,
+} from './utils';
 /* eslint-enable import/first */
 
 const bot = new Telegraf(process.env.TELEGRAM_BOT_TOKEN as string);
@@ -128,7 +136,7 @@ bot.command('pidor', async (ctx) => {
             await ctx.reply(intro);
             const ms = 2000 + i * 1000;
             await sleep(ms);
-        })
+        });
         return ctx.reply(`А ${getPlayerName(playerStat)} - <b>пидор</b>`, { parse_mode: 'HTML' });
     }
 
