@@ -48,6 +48,12 @@ const s = '💩';
 bot.command('govno', async (ctx) => {
     const { chat } = ctx.update.message;
 
+    const players = listPlayers.all(chat.id);
+
+    if (players.length === 0) {
+        return ctx.reply('Нет зарегистрированных игроков. Используйте команду /reg');
+    }
+
     const today = listTodaysGovnars.all(chat.id);
 
     if (today.length > 0) {
@@ -55,8 +61,6 @@ bot.command('govno', async (ctx) => {
 
         return ctx.reply(`Пропердолька дня: ${getPlayerName(player)}. Завтра можно выбрать новую`, { parse_mode: 'HTML' });
     }
-
-    const players = listPlayers.all(chat.id);
 
     const govnoPlayer = getRandomElement(players);
     insertGovnar.run({
