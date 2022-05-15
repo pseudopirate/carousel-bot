@@ -1,13 +1,9 @@
 FROM mhart/alpine-node:14
 
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN  npm ci --prod
+COPY src ./src
+COPY tsconfig.json package.json package-lock.json ./
+RUN  npm ci
+RUN npm run build && npm prune --production
 
-FROM mhart/alpine-node:slim-14
-
-WORKDIR /app
-COPY --from=0 /app .
-COPY . .
-
-CMD node src
+CMD npm start
