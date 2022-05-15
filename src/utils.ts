@@ -18,7 +18,9 @@ const synonyms = [
     'каловых массах',
 ];
 
-export function getGovnoLevel(index: number) {
+const w = '💦';
+
+export function getGovnoLevel(index: number, isWater = false) {
     const levels = [
         'по щиколотку в ',
         'по колено в ',
@@ -33,7 +35,7 @@ export function getGovnoLevel(index: number) {
         'по глаза в ',
     ];
     const level = levels[index];
-    const suffix = getRandomElement(synonyms);
+    const suffix = isWater ? `${w}воде${w}` : getRandomElement(synonyms);
 
     if (level) {
         return level + suffix;

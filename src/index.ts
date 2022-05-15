@@ -44,7 +44,6 @@ bot.command('reg', (ctx) => {
 });
 
 const s = '💩';
-// const w = '💦';
 
 bot.command('govno', async (ctx) => {
     const { chat } = ctx.update.message;
@@ -83,7 +82,9 @@ bot.command('govnostats', (ctx) => {
         return ctx.reply(`Утечек ${s} не обнаружено`);
     }
     const msg = stats.reduce((acc, stat, i) => {
-        const level = getGovnoLevel(stat.count - 1);
+        const name = stat.username || stat.name;
+        const isWater = /настя|анастасия|anastasia|nastya/gi.test(name.toLocaleLowerCase());
+        const level = getGovnoLevel(stat.count - 1, isWater);
         return `${acc}\n${i + 1}. <b>${stat.username || stat.name}</b> - ${level}`;
     }, '');
     return ctx.reply(msg, { parse_mode: 'HTML' });
