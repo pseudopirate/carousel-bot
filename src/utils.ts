@@ -45,7 +45,7 @@ export function getGovnoLevel(index: number, isWater = false) {
 }
 
 export function getPlayerName(player: {name: string; username?: string}) {
-    return player.username ? `@${player.username}` : `<b>${player.name}/<b>`;
+    return player.username ? `@${player.username}` : player.name;
 }
 
 const intros = [
